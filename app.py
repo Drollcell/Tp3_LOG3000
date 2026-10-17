@@ -53,7 +53,12 @@ def calculate(expr: str):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     """
-    Affiche le résultat
+    Affiche le résultat après soumission de l'opération arithmétrique.
+
+    Args:
+
+    Returns: 
+        génération de la page HTML contenant la réponse à l'opération.
     """
     result = ""
     if request.method == 'POST':
