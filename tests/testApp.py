@@ -1,5 +1,5 @@
 import unittest
-from app import calculate, index
+from app import calculate, app
 
 class TestCalculate(unittest.TestCase):
     def test_calculate_add_digits(self):
@@ -158,5 +158,14 @@ class TestCalculate(unittest.TestCase):
         self.assertEqual(calculate("0/5"), float(0))
         
 class TestIndex(unittest.TestCase):
-    def test_get_answer(self):
-        answer = self.client.get('/')
+    def test_get_code(self):
+        """Test d'obtention d'un code de succès lors de l'envoi d'un GET"""
+        answer = app.test_client().get('/')
+        self.assertEqual(answer.status_code, 200)
+
+    def test_post_code(self):
+        """Test d'obtention d'un code de succès lors del l'envoi d'un POST"""
+        answer = app.test_client().post('/', data = {
+            'display': '7+5'
+        })
+        self.assertEqual(answer.status_code, 200)
