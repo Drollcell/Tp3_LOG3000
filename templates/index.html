@@ -1,9 +1,21 @@
+<!-- =====================================================================
+     index.html : page unique de la calculatrice.
+     Role  : afficher le clavier et l'écran, puis envoyer l'expression
+                saisie au serveur Flask (POST) quand on clique sur "=".
+     Entrees  : variable `result` (str) fournie par la vue Flask ; elle
+                contient le resultat du calcul precedent ou une chaine
+                vide au premier chargement
+     Sorties  : requête POST avec le champ `display` (expression à évaluer).
+     Dépend de: static/style.css     
+====================================================================== -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flask Calculator</title>
+<!-- url_for évite de coder en dur le chemin des fichiers statiques -->
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -11,8 +23,8 @@
    <h1>Flask Calculator</h1>
    <form method="POST">
       <input type="text" name="display" id="display" value="{{ result }}" readonly>
-
       <div class="buttons">
+         <!-- type="button" empêche l'envoi du formulaire ; seul "=" est un submit -->
          <button type="button" class="btn" onclick="appendToDisplay('1')">1</button>
          <button type="button" class="btn" onclick="appendToDisplay('2')">02</button>
          <button type="button" class="btn" onclick="appendToDisplay('3')">3</button>
@@ -26,22 +38,43 @@
          <button type="button" class="btn" onclick="appendToDisplay('7')">7</button>
          <button type="button" class="btn" onclick="appendToDisplay('8')">88</button>
          <button type="button" class="btn" onclick="appendToDisplay('9')">9</button>
+         <!-- Libellé "×" pour l'utilisateur, mais "*" envoyé au serveur -->
          <button type="button" class="btn operator" onclick="appendToDisplay('*')"></button>
 
          <button type="button" class="btn" onclick="appendToDisplay('0')">0</button>
          <button type="button" class="btn" onclick="clearDisplay()">C</button>
+         <!-- Seul bouton submit : déclenche le POST et donc le calcul côté serveur -->
          <button type="submit" class="btn operator">=</button>
+         <!-- Libellé "÷" pour l'utilisateur mais "/" envoyé au serveur -->
          <button type="button" class="btn operator" onclick="appendToDisplay('/')"></button>
       </div>
    </form>
 </div>
 
 <script>
+     /* ---------------------------------------------------------------
+      Logique côté client : construit uniquement l'expression à l'écran.
+      Aucun calcul ici ; l'évaluation est faite par Flask après le POST.
+      --------------------------------------------------------------- */
+
+   /**
+    * Ajoute un caractère à la fin de l'écran.
+    * Appelée par les boutons chiffres et opérateurs.
+    *
+    * @param {string} value - Chiffre ou opérateur (+, -, *, /).
+    * @returns {void} Modifie directement la valeur du champ #display.
+    */
    function appendToDisplay(value) {
       const display = document.getElementById('display');
       display.value += value;
    }
 
+
+   /**
+      * Efface l'écran de la calculatrice.
+      * Appelée par le bouton "C".
+      * @returns {void} Modifie directement la valeur du champ #display.
+      */
    function clearDisplay() {
       document.getElementById('display').value = '';
    }

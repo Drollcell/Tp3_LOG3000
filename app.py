@@ -11,6 +11,15 @@ OPS = {
 }
 
 def calculate(expr: str):
+    """
+    Complète un opération arithmetique bien structurée.
+
+    Args: 
+        expr (string): opération arithmétique.
+
+    Returns: 
+        float: réponse à l'opération arithmétique. 
+    """
     if not expr or not isinstance(expr, str):
         raise ValueError("empty expression")
 
@@ -43,6 +52,9 @@ def calculate(expr: str):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    """
+    Affiche le résultat
+    """
     result = ""
     if request.method == 'POST':
         expression = request.form.get('display', '')
