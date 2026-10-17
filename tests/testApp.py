@@ -158,3 +158,5 @@ class TestCalculate(unittest.TestCase):
         self.assertEqual(calculate("0/5"), float(0))
         
 class TestIndex(unittest.TestCase):
+    def test_get_answer(self):
+        answer = self.client.get('/')

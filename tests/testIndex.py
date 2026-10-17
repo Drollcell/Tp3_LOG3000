@@ -1,6 +1,8 @@
+
 import unittest
 from pathlib import Path
 from app import app
+
 
 class TestCalculatorPage(unittest.TestCase):
 
@@ -31,6 +33,30 @@ class TestCalculatorPage(unittest.TestCase):
                     response.data
                 )
 
+    def test_number_buttons_have_correct_labels(self):
+        response = self.client.get("/")
+        html = response.data.decode("utf-8")
+
+        expected_buttons = {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "0": "0",
+        }
+
+        for number, label in expected_buttons.items():
+            with self.subTest(number=number):
+                self.assertIn(
+                    f"onclick=\"appendToDisplay('{number}')\">{label}</button>",
+                    html
+                )
+
     def test_page_contains_operators(self):
         response = self.client.get("/")
         for operator in ["+", "-", "*", "/"]:
@@ -38,6 +64,25 @@ class TestCalculatorPage(unittest.TestCase):
                 self.assertIn(
                     f"appendToDisplay('{operator}')".encode(),
                     response.data
+                )
+
+    def test_operator_buttons_have_visible_labels(self):
+        response = self.client.get("/")
+        html = response.data.decode("utf-8")
+
+        expected_operators = {
+            "+": "+",
+            "-": "-",
+            "*": "×",
+            "/": "÷",
+            "=": "="
+        }
+
+        for operator, label in expected_operators.items():
+            with self.subTest(operator=operator):
+                self.assertIn(
+                    f"onclick=\"appendToDisplay('{operator}')\">{label}</button>",
+                    html
                 )
 
     def test_page_contains_clear_button(self):
@@ -54,8 +99,10 @@ class TestCalculatorPage(unittest.TestCase):
 
     def test_css_is_accessible(self):
         response = self.client.get("/static/style.css")
+
         self.assertEqual(response.status_code, 200)
         self.assertIn(b".calculator", response.data)
+
 
 if __name__ == "__main__":
     unittest.main()
