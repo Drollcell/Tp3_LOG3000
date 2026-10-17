@@ -21,6 +21,8 @@ Guide d'utilisation:
   7. Reprendre à partir de l'étape 2.
 
 Guide de test: 
+Pour effectuer les tests d un fichier spécifique
+- Effectuer la commande: python -m unittest tests.nom_ficher.py
 
 Fichier: app.py
   Description: Ce ficher permet de vérifier le respect des nomres d'écriture 
