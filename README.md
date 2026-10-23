@@ -3,7 +3,7 @@
 Numéros d'équipe: 32
 
 But et portée du projet: Cette application permette d'effectuer les opérations
-    arythmétiques (addition, soustraction, multiplication et divison) à l'aide des chiffres de 0 à 9.
+  arythmétiques (addition, soustraction, multiplication et divison) à l'aide des chiffres de 0 à 9.
 
 Guide d'installation: 
   1. Installer Python 3.9 ou plus.
@@ -21,8 +21,17 @@ Guide d'utilisation:
   7. Reprendre à partir de l'étape 2.
 
 Guide de test: 
-Pour effectuer les tests d un fichier spécifique
-- Effectuer la commande: python -m unittest tests.nom_ficher
+  Pour effectuer les tests d'un fichier spécifique exécuter la commande: 
+  python -m unittest tests.nom_ficher
+
+Flux de contribution:
+  1. Créer une issue pour signaler un bug ou discuter d'une nouvelle fonctionnalité, si nécessaire.
+  2. Créer une branche créer une branche à partir de main.
+  3. Effectuer les modifications.
+  4. Lancer les tests pour vérifier que les changements ne provoquent pas de régression.
+  5. Si nécessaire, créer des tests pour couvrir la nouvelle fonctionnalité.
+  6. Ouvrir une Pull Request vers main, en décrivant les changements apportés et leur objectif.
+
 
 Fichier: app.py
   Description: Ce ficher permet de vérifier le respect des nomres d'écriture 

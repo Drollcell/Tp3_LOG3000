@@ -1,7 +1,7 @@
 Module static:
   Description: Regroupe les ressources statiques nécessaires à la 
     présentation et au fonctionnement visuel de l’application
-  Contient les fichier:
+  Contient les fichiers :
 
     Fichier : style.css
       Description : Définit la présentation visuelle de la calculatrice,
