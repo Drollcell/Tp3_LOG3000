@@ -48,4 +48,4 @@ def divide(a,b):
     Returns: 
         float: quotient de la division.
     """
-    return a // b
+    return a / b
