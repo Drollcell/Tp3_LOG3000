@@ -158,7 +158,7 @@ class TestDivide(unittest.TestCase):
         self.assertEqual(divide(-6, -3), 2)
             
     def test_divide_by_one(self):
-         """Test la division par 1"""
+        """Test la division par 1"""
         self.assertEqual(divide(5, 1), 5)
             
     def test_divide_zero_by_number(self):
