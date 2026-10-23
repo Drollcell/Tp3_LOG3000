@@ -154,13 +154,17 @@ class TestDivide(unittest.TestCase):
         self.assertEqual(divide(1000000, 1000), 1000)
             
     def test_divide_two_negative_numbers(self):
-            """Test la division de deux chiffres négatifs"""
-            self.assertEqual(divide(-6, -3), 2)
+        """Test la division de deux chiffres négatifs"""
+        self.assertEqual(divide(-6, -3), 2)
             
     def test_divide_by_one(self):
-            """Test la division par 1"""
-            self.assertEqual(divide(5, 1), 5)
+         """Test la division par 1"""
+        self.assertEqual(divide(5, 1), 5)
             
     def test_divide_zero_by_number(self):
-            """Test la division ou la dividende est 0"""
-            self.assertEqual(divide(0, 5), 0)
+        """Test la division ou la dividende est 0"""
+        self.assertEqual(divide(0, 5), 0)
+
+    def test_divide_large_amount_digits_float(self):
+        """Test la division ou la réponse contient plus de décimales qu'on ne peut afficher"""
+        self.assertAlmostEqual(divide(10, 3), 3.3333333333333333)
