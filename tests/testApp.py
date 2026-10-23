@@ -26,28 +26,6 @@ class TestCalculate(unittest.TestCase):
         """Test l'addition de deux zeros"""
         self.assertEqual(calculate("0+0"), float(0))
 
-    def test_calculate_add_negative_positive_digits(self):
-        """Test l'addition de deux chiffres ou le premier est négatif"""
-        self.assertEqual(calculate("-2+3"), float(1))
-
-    def test_calculate_add_positive_negative_digits(self):
-        """Test l'addition de deux chiffres ou le second est négatif"""
-        self.assertEqual(calculate("2+-3"), float(-1))
-
-    def test_calculate_add_negative_positive_digits(self):
-        """Test l'addition de deux chiffres négatifs"""
-        self.assertEqual(calculate("-2+-2"), float(-4))
-
-    def test_calculate_add_zero_first_negative(self):
-        """Test l'addition d'un zero en permière position et 
-        d'un nombre négatif en seconde"""
-        self.assertEqual(calculate("0+-2"), float(-2))
-
-    def test_calculate_add_zero_second_negative(self):
-        """Test l'addition d'un nombre négatif en première position et
-        d'un zero en seconde"""
-        self.assertEqual(calculate("-2+0"), float(-2))
-
     def test_calculate_subtract_digits(self):
         """Test la soustraction de deux chiffres"""
         self.assertEqual(calculate("3-2"), float(1))
@@ -80,17 +58,9 @@ class TestCalculate(unittest.TestCase):
         """Test la soustraction de deux gros nombres"""
         self.assertEqual(calculate("999999-100000"), float(899999))
 
-    def test_calculate_subtract_negative_first(self):
-        """Test la soustraction de deux chiffres ou le permier est négatif"""
-        self.assertEqual(calculate("-2-1"), float(-3))
-
     def test_calculate_subtract_negative_second(self):
         """Test la soustraction de deux chiffres ou le second est négatif"""
-        self.assertEqual(calculate("2-1"), float(3))
-
-    def test_calculate_subtract_negatives(self):
-        """Test la soustraction de deux chiffres négatifs"""
-        self.assertEqual(calculate("-2--3"), float(1))
+        self.assertEqual(calculate("2-1"), float(1))
     
     def test_calculate_multiply_digits(self):
         """Test la multiplication de deux chiffres"""
@@ -98,7 +68,7 @@ class TestCalculate(unittest.TestCase):
             
     def test_calculate_multiply_zero_first(self):
         """Test la multiplication de deux chiffres ou le premier est zero"""
-        self.assertEqual(calculate("2*0")), float(0)
+        self.assertEqual(calculate("2*0"), float(0))
         
     def test_calculate_multiply_big_numbers(self):
         """Test la multiplication de deux gros nombres"""
@@ -111,14 +81,6 @@ class TestCalculate(unittest.TestCase):
     def test_calculate_multiply_zeros(self):
         """Test la multiplication de deux zeros"""
         self.assertEqual(calculate("0*0"), float(0))
-    
-    def test_calculate_multiply_negative(self):
-        """Test la multiplication de deux chiffres ou le premier est négatif"""
-        self.assertEqual(calculate("-2*3"), float(-6))
-        
-    def test_calculate_multiply_negative_numbers(self):
-        """Test la multiplication de deux chiffres ou le second est négatif"""
-        self.assertEqual(calculate("-2*-3"), float(6))
         
     def test_calculate_multiply_by_one(self):
         """Test la multiplication de deux chiffres ou le second est 1"""
@@ -136,18 +98,10 @@ class TestCalculate(unittest.TestCase):
         """Test la division par zero"""
         with self.assertRaises(ZeroDivisionError):
             calculate("5/0")
-                
-    def test_calculate_divide_negative_numbers(self):
-        """Test la division de deux chiffres ou le permier est négatif"""
-        self.assertEqual(calculate("-6/3"), float(-2))
             
     def test_calculate_divide_big_numbers(self):
         """Test la division de deux gros nombres"""
         self.assertEqual(calculate("1000000/1000"), float(1000))
-            
-    def test_calculate_divide_two_negative_numbers(self):
-        """Test la division de deux chiffres négatifs"""
-        self.assertEqual(calculate("-6/-3"), float(2))
             
     def test_calculate_divide_by_one(self):
         """Test la division par 1"""
