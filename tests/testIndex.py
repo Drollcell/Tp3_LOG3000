@@ -74,16 +74,14 @@ class TestCalculatorPage(unittest.TestCase):
             "+": "+",
             "-": "-",
             "*": "×",
-            "/": "÷",
-            "=": "="
+            "/": "÷"
         }
 
         for operator, label in expected_operators.items():
             with self.subTest(operator=operator):
-                self.assertIn(
-                    f"onclick=\"appendToDisplay('{operator}')\">{label}</button>",
-                    html
-                )
+                self.assertIn(f"onclick=\"appendToDisplay('{operator}')\">{label}</button>", html)
+                
+        self.assertIn('<button type="submit" class="btn operator">=</button>', html)
 
     def test_page_contains_clear_button(self):
         response = self.client.get("/")
