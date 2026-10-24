@@ -52,10 +52,13 @@
 </div>
 
 <script>
-     /* ---------------------------------------------------------------
-      Logique côté client : construit uniquement l'expression à l'écran.
-      Aucun calcul ici ; l'évaluation est faite par Flask après le POST.
-      --------------------------------------------------------------- */
+   /* ---------------------------------------------------------------
+   Logique côté client : construit uniquement l'expression à l'écran.
+   Aucun calcul ici ; l'évaluation est faite par Flask après le POST.
+   --------------------------------------------------------------- */
+
+   // True when Flask has returned a calculation result.
+   let justCalculated = (result != '') ? 'true' : 'false';
 
    /**
     * Ajoute un caractère à la fin de l'écran.
@@ -66,6 +69,15 @@
     */
    function appendToDisplay(value) {
       const display = document.getElementById('display');
+
+      if (justCalculated) {
+         if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(value)) {
+            display.value = '';
+         }
+
+         justCalculated = false;
+      }
+
       display.value += value;
    }
 
@@ -77,6 +89,7 @@
       */
    function clearDisplay() {
       document.getElementById('display').value = '';
+      justCalculated = false;
    }
 </script>
 </body>
