@@ -57,8 +57,8 @@
    Aucun calcul ici ; l'évaluation est faite par Flask après le POST.
    --------------------------------------------------------------- */
 
-   // True when Flask has returned a calculation result.
-   let justCalculated = (result != '') ? 'true' : 'false';
+   // Vrai quand Flask a returné un resultat
+   let calculationDone = {{ 'true' if result else 'false' }};
 
    /**
     * Ajoute un caractère à la fin de l'écran.
@@ -70,17 +70,16 @@
    function appendToDisplay(value) {
       const display = document.getElementById('display');
 
-      if (justCalculated) {
+      if (calculationDone) {
          if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(value)) {
             display.value = '';
          }
 
-         justCalculated = false;
+         calculationDone = false;
       }
 
       display.value += value;
    }
-
 
    /**
       * Efface l'écran de la calculatrice.
@@ -89,7 +88,7 @@
       */
    function clearDisplay() {
       document.getElementById('display').value = '';
-      justCalculated = false;
+      calculationDone = false;
    }
 </script>
 </body>
